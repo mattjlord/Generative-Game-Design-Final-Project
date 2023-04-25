@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
-    [SerializeField] private GameObject _tile;
+    [SerializeField] public GameObject _tile;
     [SerializeField] private float _tileSize;
-    [SerializeField] private int _width;
-    [SerializeField] private int _height;
+    [SerializeField] public int _width;
+    [SerializeField] public int _height;
 
     private List<GameObject> _tiles = new List<GameObject>();
 
