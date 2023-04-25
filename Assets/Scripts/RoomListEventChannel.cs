@@ -10,6 +10,7 @@ public class RoomListEventChannel : ScriptableObject
 
     public void RaiseEvent(List<BasicRoom> val)
     {
+        Debug.Log("Raised");
         OnEventRaised?.Invoke(val);
     }
 }

@@ -22,22 +22,7 @@ public class BasicRoom
     }
 }
 
-public class Doorway
-{
-    public Vector2 position;
-    public int side; // 0: top, 1: right, 2: bottom, 3: left
 
-    public Doorway(Vector2 position, int side)
-    {
-        this.position = position;
-        this.side = side;
-    }
-
-    public override string ToString()
-    {
-        return "Position: " + position.ToString() + ", Side: " + side.ToString();
-    }
-}
 
 public enum RoomType
 {
@@ -56,7 +41,6 @@ public class GrammarBasedRoomGenerator : MonoBehaviour
 {
     public int maxRooms = 10;
     public RoomListEventChannel roomList;
-    private List<Doorway> doorways = new List<Doorway>();
 
     private Dictionary<RoomType, List<RoomType>> grammarRules = new Dictionary<RoomType, List<RoomType>>
     {
@@ -75,7 +59,6 @@ public class GrammarBasedRoomGenerator : MonoBehaviour
     void Start()
     {
         GenerateRooms();
-        roomList.RaiseEvent(rooms);
         foreach (BasicRoom room in rooms)
         {
             Debug.Log(room.ToString());
@@ -144,33 +127,15 @@ public class GrammarBasedRoomGenerator : MonoBehaviour
                 {
 
                     rooms.Add(newRoom);
-                    Vector2 doorwayPosition;
-                    switch (side)
-                    {
-                        case 0: // top
-                            doorwayPosition = new Vector2(newRoom.x, newRoom.y - 1);
-                            break;
-                        case 1: // right
-                            doorwayPosition = new Vector2(newRoom.x - 1, newRoom.y);
-                            break;
-                        case 2: // bottom
-                            doorwayPosition = new Vector2(newRoom.x, newRoom.y + newRoom.height);
-                            break;
-                        case 3: // left
-                            doorwayPosition = new Vector2(newRoom.x + newRoom.width, newRoom.y);
-                            break;
-                        default:
-                            doorwayPosition = Vector2.zero;
-                            break;
-                    }
-                    Doorway doorway = new Doorway(doorwayPosition, side);
-                    doorways.Add(doorway);
+                    
                     roomAdded = true;
 
                     i++;
                 }
             }
         }
+        roomList.RaiseEvent(rooms);
+
     }
 
         RoomType GetRandomNeighborRoomType(RoomType currentRoomType)
