@@ -129,16 +129,16 @@ public class Tile : MonoBehaviour
         switch(dir)
         {
             case Direction.North:
-                _bottomWallState = 0;
+                _bottomWallState = 2;
                 break;
             case Direction.East:
-                _rightWallState = 0;
+                _rightWallState = 2;
                 break;
             case Direction.West:
-                _leftWallState = 0;
+                _leftWallState = 2;
                 break;
             case Direction.South:
-                _topWallState = 0;
+                _topWallState = 2;
                 
                 break;
         }
