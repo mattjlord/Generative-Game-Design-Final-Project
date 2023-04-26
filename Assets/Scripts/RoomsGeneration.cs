@@ -16,6 +16,9 @@ public class RoomsGeneration : MonoBehaviour
     public GameObject roomPrefab;
     public List<RoomPrefabMapping> roomPrefabs;
 
+    private List<GameObject> createdRooms = new List<GameObject>();
+
+
 
 
     // Start is called before the first frame update
@@ -33,6 +36,11 @@ public class RoomsGeneration : MonoBehaviour
 
     void GenerateRooms(List<BasicRoom> rooms)
     {
+        foreach (GameObject room in createdRooms)
+        {
+            Destroy(room);
+        }
+        createdRooms = new List<GameObject>();
         foreach (BasicRoom room in rooms)
         {
             Vector3 roomPosition = new Vector3(room.y * 10, 0, room.x * 10);
@@ -44,12 +52,13 @@ public class RoomsGeneration : MonoBehaviour
             roomObject.GetComponent<Room>()._height = room.height;
             roomObject.GetComponent<Room>()._tile = roomTile;
             roomObject.GetComponent<Room>().GenerateRoom();
+            
 
             foreach(Doorway door in room.doorways)
             {
                 roomObject.GetComponent<Room>().PlaceDoor(door.y, door.x, door.direction);
             }
-
+            createdRooms.Add(roomObject);
 
 
             // If you don't have a room prefab, create an empty GameObject for each room:

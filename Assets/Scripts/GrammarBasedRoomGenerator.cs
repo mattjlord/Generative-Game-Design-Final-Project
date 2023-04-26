@@ -35,8 +35,16 @@ public class GrammarBasedRoomGenerator : MonoBehaviour
         }
     }
 
+    public void GenerateRoom()
+    {
+        GenerateRooms();
+        roomList.RaiseEvent(rooms);
+    }
+
     void GenerateRooms()
-{
+    {
+    rooms = new List<BasicRoom>();
+
     // Generate the first room as Entry
     RoomType firstRoomType = RoomType.Entry;
     int width = Random.Range(2, 5);
