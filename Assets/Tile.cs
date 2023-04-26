@@ -124,6 +124,26 @@ public class Tile : MonoBehaviour
         }
     }
 
+    public void PlaceDoor(Direction dir)
+    {
+        switch(dir)
+        {
+            case Direction.North:
+                _bottomWallState = 0;
+                break;
+            case Direction.East:
+                _rightWallState = 0;
+                break;
+            case Direction.West:
+                _leftWallState = 0;
+                break;
+            case Direction.South:
+                _topWallState = 0;
+                
+                break;
+        }
+    }
+
     void UpdateTile()
     {
         AssignWall(_bottomWallFilter, _bottomDoorframeFilter, _bottomWallState);

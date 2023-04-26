@@ -43,6 +43,13 @@ public class RoomsGeneration : MonoBehaviour
             roomObject.GetComponent<Room>()._width = room.width;
             roomObject.GetComponent<Room>()._height = room.height;
             roomObject.GetComponent<Room>()._tile = roomTile;
+            roomObject.GetComponent<Room>().GenerateRoom();
+
+            foreach(Doorway door in room.doorways)
+            {
+                roomObject.GetComponent<Room>().PlaceDoor(door.y, door.x, door.direction);
+            }
+
 
 
             // If you don't have a room prefab, create an empty GameObject for each room:
