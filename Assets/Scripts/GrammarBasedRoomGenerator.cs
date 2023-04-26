@@ -39,8 +39,8 @@ public class GrammarBasedRoomGenerator : MonoBehaviour
 {
     // Generate the first room as Entry
     RoomType firstRoomType = RoomType.Entry;
-    int width = Random.Range(1, 5);
-    int height = Random.Range(1, 5);
+    int width = Random.Range(2, 5);
+    int height = Random.Range(2, 5);
     int x = 0;
     int y = 0;
     BasicRoom firstRoom = new BasicRoom(firstRoomType, x, y, width, height);
@@ -61,8 +61,8 @@ public class GrammarBasedRoomGenerator : MonoBehaviour
             BasicRoom previousRoom = rooms[i - 1];
             RoomType newRoomType = GetRandomNeighborRoomType(previousRoom.type);
 
-            int newWidth = Random.Range(1, 5);
-            int newHeight = Random.Range(1, 5);
+            int newWidth = Random.Range(2, 5);
+            int newHeight = Random.Range(2, 5);
             int newX, newY;
             Direction direction;
             Direction previousRoomDirection;
